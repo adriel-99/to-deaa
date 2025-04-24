@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Little Question for You 💙</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #a8d0e6, #f8f9fa);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #003f88;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #00509d;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            background-color: #ffd700;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ffea00;
+            transform: scale(1.1);
+        }
+
+        .options {
+            display: none;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .option-btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background-color: #56cfe1;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-btn:hover {
+            background-color: #4ea8de;
+            transform: scale(1.05);
+        }
+
+        .sunflower {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url('https://png.pngtree.com/png-clipart/20210530/original/pngtree-sunflower-landscape-yellow-flower-flower-png-image_6342830.png');
+            background-size: cover;
+            animation: float 10s linear infinite;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        .burst-flower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://png.pngtree.com/png-clipart/20210530/original/pngtree-sunflower-landscape-yellow-flower-flower-png-image_6342830.png');
+            background-size: cover;
+            pointer-events: none;
+            animation: burst 1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes burst {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hey You 💙</h1>
+        <p>There’s something I’ve been meaning to ask...</p>
+        <button class="btn" onclick="showOptions()">Will you go on a date with me? 🌻</button>
+
+        <div class="options" id="options">
+            <button class="option-btn" onclick="respond(event)">Yes! 😍</button>
+            <button class="option-btn" onclick="respond(event)">Absolutely Yes! 💖</button>
+            <button class="option-btn" id="noBtn" onmouseover="dodgeNo()">No 😅</button>
+        </div>
+    </div>
+
+    <!-- Floating background sunflowers -->
+    <script>
+        for (let i = 0; i < 15; i++) {
+            const flower = document.createElement('div');
+            flower.classList.add('sunflower');
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.top = Math.random() * 100 + 'vh';
+            flower.style.animationDuration = (10 + Math.random() * 5) + 's';
+            document.body.appendChild(flower);
+        }
+
+        function showOptions() {
+            document.getElementById('options').style.display = 'flex';
+        }
+
+        function respond(event) {
+            const x = event.clientX;
+            const y = event.clientY;
+            explodeSunflowers(x, y);
+
+            setTimeout(() => {
+                alert("Yay! I can't wait! 💕");
+            }, 800);
+        }
+
+        function explodeSunflowers(x, y) {
+            const count = 25;
+            for (let i = 0; i < count; i++) {
+                const flower = document.createElement('div');
+                flower.classList.add('burst-flower');
+
+                const angle = Math.random() * 2 * Math.PI;
+                const radius = 100 + Math.random() * 50;
+                const offsetX = Math.cos(angle) * radius + 'px';
+                const offsetY = Math.sin(angle) * radius + 'px';
+
+                flower.style.left = x + 'px';
+                flower.style.top = y + 'px';
+                flower.style.setProperty('--x', offsetX);
+                flower.style.setProperty('--y', offsetY);
+
+                document.body.appendChild(flower);
+
+                setTimeout(() => {
+                    flower.remove();
+                }, 1000);
+            }
+        }
+
+        function dodgeNo() {
+            const noBtn = document.getElementById("noBtn");
+            const container = document.querySelector(".container");
+            const containerRect = container.getBoundingClientRect();
+
+            const maxX = containerRect.width - noBtn.offsetWidth;
+            const maxY = containerRect.height - noBtn.offsetHeight;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.position = "absolute";
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        }
+    </script>
+</body>
+
+</html>
