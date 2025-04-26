@@ -119,6 +119,31 @@
                 opacity: 0;
             }
         }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                font-size: 1.2rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .option-btn {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .options {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 
@@ -126,7 +151,8 @@
     <div class="container">
         <h1>Hey You 💙</h1>
         <p>There’s something I’ve been meaning to ask...</p>
-        <button class="btn" onclick="showOptions()">Xhovi, how about we make it official... a date, just us two? 💫🌻</button>
+        <button class="btn" onclick="showOptions()">Xhovi, how about we make it official... a date, just us two?
+            💫🌻</button>
 
         <div class="options" id="options">
             <button class="option-btn" onclick="respond(event)">Yes! 😍</button>
@@ -199,6 +225,18 @@
             noBtn.style.left = `${randomX}px`;
             noBtn.style.top = `${randomY}px`;
         }
+
+        // Add this to support mobile touch movement
+        document.addEventListener("DOMContentLoaded", () => {
+            const noBtn = document.getElementById("noBtn");
+
+            // Add both hover and touch support
+            noBtn.addEventListener("mouseover", dodgeNo);
+            noBtn.addEventListener("touchstart", (e) => {
+                e.preventDefault(); // Prevent accidental clicking
+                dodgeNo();
+            });
+        });
     </script>
 </body>
 
