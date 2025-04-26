@@ -226,14 +226,13 @@
             noBtn.style.top = `${randomY}px`;
         }
 
-        // Add this to support mobile touch movement
+        
         document.addEventListener("DOMContentLoaded", () => {
             const noBtn = document.getElementById("noBtn");
 
-            // Add both hover and touch support
             noBtn.addEventListener("mouseover", dodgeNo);
             noBtn.addEventListener("touchstart", (e) => {
-                e.preventDefault(); // Prevent accidental clicking
+                e.preventDefault(); 
                 dodgeNo();
             });
         });
