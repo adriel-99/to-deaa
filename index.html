@@ -5,12 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A Little Question for You 💙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet" />
     <style>
         body {
             margin: 0;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(135deg, #a8d0e6, #f8f9fa);
-            color: #333;
+            font-family: 'Gochi Hand', cursive, sans-serif;
+            background: linear-gradient(135deg, #ffe4ec, #d9e7ff);
+            color: #4a2e2e;
             overflow: hidden;
         }
 
@@ -21,36 +22,39 @@
             align-items: center;
             height: 100vh;
             text-align: center;
-            position: relative;
             padding: 2rem;
+            position: relative;
             z-index: 1;
         }
 
         h1 {
             font-size: 3rem;
-            color: #003f88;
+            color: #8a4f7d;
             margin-bottom: 1rem;
+            letter-spacing: 0.4rem;
         }
 
         p {
-            font-size: 1.5rem;
-            color: #00509d;
+            font-size: 1.6rem;
+            color: #5c3a50;
             margin-bottom: 2rem;
+            max-width: 600px;
         }
 
         .btn {
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             font-size: 1.5rem;
-            background-color: #ffd700;
+            background-color: #ffc3a0;
             border: none;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: #5e3f58;
+            box-shadow: 0 6px 15px rgba(255, 179, 186, 0.5);
             transition: all 0.3s ease;
         }
 
         .btn:hover {
-            background-color: #ffea00;
+            background-color: #ffdacc;
             transform: scale(1.1);
         }
 
@@ -58,32 +62,35 @@
             display: none;
             gap: 1rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .option-btn {
             padding: 1rem 2rem;
             font-size: 1.2rem;
-            background-color: #56cfe1;
-            color: white;
+            background-color: #aec6cf;
+            color: #1f2f3f;
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(174, 198, 207, 0.4);
         }
 
         .option-btn:hover {
-            background-color: #4ea8de;
+            background-color: #d6eaf8;
             transform: scale(1.05);
         }
 
-        .sunflower {
+        .rose {
             position: absolute;
             width: 60px;
             height: 60px;
-            background-image: url('https://png.pngtree.com/png-clipart/20210530/original/pngtree-sunflower-landscape-yellow-flower-flower-png-image_6342830.png');
+            background-image: url('https://png.pngtree.com/png-vector/20240619/ourmid/pngtree-pretty-blue-rose-with-soft-green-leaves-png-image_12805348.png');
             background-size: cover;
             animation: float 10s linear infinite;
-            opacity: 0.6;
+            opacity: 0.5;
             pointer-events: none;
         }
 
@@ -101,7 +108,7 @@
             position: fixed;
             width: 40px;
             height: 40px;
-            background-image: url('https://png.pngtree.com/png-clipart/20210530/original/pngtree-sunflower-landscape-yellow-flower-flower-png-image_6342830.png');
+            background-image: url('https://i.imgur.com/zfKqKfU.png');
             background-size: cover;
             pointer-events: none;
             animation: burst 1s ease-out forwards;
@@ -149,23 +156,21 @@
 
 <body>
     <div class="container">
-        <h1>Hey You 💙</h1>
-        <p>There’s something I’ve been meaning to ask...</p>
-        <button class="btn" onclick="showOptions()">Xhovi, how about we make it official... a date, just us two?
-            💫🌻</button>
+        <h1>H.E.Y Y.O.U.</h1>
+        <p>Could we <em>*be*</em> any more perfect for each other?</p>
+        <button class="btn" onclick="showOptions()">Dea, will you be the Monica to my Chandler? 🌹</button>
 
         <div class="options" id="options">
             <button class="option-btn" onclick="respond(event)">Yes! 😍</button>
-            <button class="option-btn" onclick="respond(event)">Absolutely Yes! 💖</button>
+            <button class="option-btn" onclick="respond(event)">I thought you'd never ask 💖</button>
             <button class="option-btn" id="noBtn" onmouseover="dodgeNo()">No 😅</button>
         </div>
     </div>
 
-    
     <script>
         for (let i = 0; i < 15; i++) {
             const flower = document.createElement('div');
-            flower.classList.add('sunflower');
+            flower.classList.add('rose');
             flower.style.left = Math.random() * 100 + 'vw';
             flower.style.top = Math.random() * 100 + 'vh';
             flower.style.animationDuration = (10 + Math.random() * 5) + 's';
@@ -179,14 +184,14 @@
         function respond(event) {
             const x = event.clientX;
             const y = event.clientY;
-            explodeSunflowers(x, y);
+            explodeRoses(x, y);
 
             setTimeout(() => {
-                alert("Yay! I can't wait! 💕");
+                alert("YAY! I'll be there for you 💕");
             }, 800);
         }
 
-        function explodeSunflowers(x, y) {
+        function explodeRoses(x, y) {
             const count = 25;
             for (let i = 0; i < count; i++) {
                 const flower = document.createElement('div');
@@ -226,13 +231,11 @@
             noBtn.style.top = `${randomY}px`;
         }
 
-        
         document.addEventListener("DOMContentLoaded", () => {
             const noBtn = document.getElementById("noBtn");
-
             noBtn.addEventListener("mouseover", dodgeNo);
             noBtn.addEventListener("touchstart", (e) => {
-                e.preventDefault(); 
+                e.preventDefault();
                 dodgeNo();
             });
         });
