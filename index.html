@@ -165,9 +165,23 @@
             <button class="option-btn" onclick="respond(event)">I thought you'd never ask 💖</button>
             <button class="option-btn" id="noBtn" onmouseover="dodgeNo()">No 😅</button>
         </div>
+
+        <audio id="backgroundAudio" autoplay>
+            <source src="song.mp3" type="audio/mp3">
+        </audio>
+
     </div>
 
     <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const audio = document.getElementById('backgroundAudio');
+            audio.currentTime = 48;
+            audio.play().catch((err) => {
+                console.error("Audio play failed:", err);
+            });
+        });
+
         for (let i = 0; i < 15; i++) {
             const flower = document.createElement('div');
             flower.classList.add('rose');
