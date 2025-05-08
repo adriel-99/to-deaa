@@ -158,7 +158,7 @@
     <div class="container">
         <h1>H.E.Y Y.O.U.</h1>
         <p>Could we <em>*be*</em> any more perfect for each other?</p>
-        <button class="btn" onclick="showOptions()">Dea, will you be the Monica to my Chandler? 🌹</button>
+        <button class="btn" onclick="startAudio()">Dea, will you be the Monica to my Chandler? 🌹</button>
 
         <div class="options" id="options">
             <button class="option-btn" onclick="respond(event)">Yes! 😍</button>
@@ -174,13 +174,14 @@
 
     <script>
 
-        document.addEventListener("DOMContentLoaded", function () {
+        function startAudio() {
             const audio = document.getElementById('backgroundAudio');
-            audio.currentTime = 48;
+            audio.currentTime = 48; 
             audio.play().catch((err) => {
                 console.error("Audio play failed:", err);
             });
-        });
+            showOptions();
+        }
 
         for (let i = 0; i < 15; i++) {
             const flower = document.createElement('div');
